@@ -2,7 +2,7 @@ protoc:
   version: 3.11.4
   includes:
     - proto/
-    # - third_party/googleapis/
+    - third_party/googleapis/
 excludes:
   - third_party/
 lint:
