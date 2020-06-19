@@ -1,0 +1,20 @@
+protoc:
+  version: 3.11.4
+  includes:
+    - proto/
+    # - third_party/googleapis/
+excludes:
+  - third_party/
+lint:
+  group: uber2
+generate:
+  go_options:
+    import_path: github.com/Henrod/message-board/protogen
+  plugins:
+    - name: go
+      type: go
+      flags: plugins=grpc
+      output: protogen
+    - name: grpc-gateway
+      type: go
+      output: protogen
