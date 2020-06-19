@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto.v1;
+
+import "message.proto";
+import "google/api/annotations.proto";
+
+option csharp_namespace = "Proto.V1";
+option go_package = "protov1";
+option java_multiple_files = true;
+option java_outer_classname = "BoardApiProto";
+option java_package = "com.proto.v1";
+option objc_class_prefix = "PXX";
+option php_namespace = "Proto\\V1";
+
+// BoardAPI has methods to handle messages.
+service BoardAPI {
+    // CreateMessage posts users message on theirs boards.
+    rpc CreateMessage(CreateMessageRequest) returns (CreateMessageResponse) {
+        option(google.api.http) = {
+            post: "/v1/users/{user_id}/messages"
+            body: "message"
+        };
+    };
+
+    rpc ListMessages(ListMessagesRequest) returns (ListMessagesResponse);
+}
+
+message CreateMessageRequest {
+    Message message = 1;
+    string user_id = 2;
+}
+
+message CreateMessageResponse {
+    Message message = 1;
+}
+
+message ListMessagesRequest {
+    string user_id = 1;
+}
+
+message ListMessagesResponse {
+    repeated Message messages = 1;
+}
